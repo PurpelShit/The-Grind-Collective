@@ -1,0 +1,980 @@
+<style>
+/* ════════════════════════════════════════════════
+   THE GRIND COLLECTIVE — UNIFIED STYLES
+════════════════════════════════════════════════ */
+:root {
+  /* Colors */
+  --color-bg-base: #fdf6ee;
+  --color-bg-cream: #f5e6d0;
+  --color-bg-card: #f0dcc4;
+  --color-bg-dark: #2c1a0e;
+  --color-bg-pill: #3d2410;
+  --color-primary: #c8681a;
+  --color-primary-hover: #a8520e;
+  --color-primary-glow: rgba(200, 104, 26, 0.3);
+  --color-text-dark: #1a0f07;
+  --color-text-body: #3d2410;
+  --color-text-mid: #7a4f32;
+  --color-text-white: #ffffff;
+  --color-border: rgba(61, 36, 16, 0.15);
+  --color-border-dark: rgba(61, 36, 16, 0.3);
+  --color-urgent: #e63946;
+  --color-overlay: rgba(30, 15, 5, 0.35);
+  --color-newsletter-bg: rgba(20, 10, 4, 0.75);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-script: 'Dancing Script', cursive;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+  --text-2xl: 32px;
+  --text-hero: clamp(1.8rem, 7vw, 4rem);
+  --text-section: clamp(1.5rem, 5vw, 2.8rem);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --leading-tight: 1.15;
+  --leading-normal: 1.65;
+  --leading-loose: 1.85;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  /* Component Radii */
+  --menu-card-arch-radius: 80px 80px 20px 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 12px rgba(44, 26, 14, 0.10);
+  --shadow-card: 0 6px 32px rgba(44, 26, 14, 0.12);
+  --shadow-card-hover: 0 16px 48px rgba(44, 26, 14, 0.22);
+  --shadow-btn: 0 4px 18px rgba(200, 104, 26, 0.38);
+  --shadow-btn-hover: 0 8px 28px rgba(200, 104, 26, 0.55);
+
+  /* Transitions */
+  --transition-fast: 0.18s ease;
+  --transition-smooth: 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Image Controls (Mobile default, overridden at Desktop) */
+  --hero-img-position: center center;
+  --about-barista-img-height: 260px;
+  --about-barista-img-position: center top;
+  --about-collage-1-width: 180px;
+  --about-collage-1-height: 170px;
+  --about-collage-2-width: 120px;
+  --about-collage-2-height: 120px;
+  --about-collage-2-top: -20px;
+  --about-collage-2-right: -10px;
+  --menu-card-img-size: 150px;
+  --menu-card-img-position: center center;
+  --menu-card-float-offset: -45px;
+  --menu-card-spacer-top: 130px;
+  --event-img-height: 160px;
+  --member-img-size: 52px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --menu-card-arch-radius: 120px 120px 20px 20px;
+    --about-barista-img-height: 420px;
+    --about-collage-1-width: 200px;
+    --about-collage-1-height: 200px;
+    --about-collage-2-width: 160px;
+    --about-collage-2-height: 160px;
+    --about-collage-2-top: -30px;
+    --about-collage-2-right: -20px;
+    --menu-card-img-size: 200px;
+    --menu-card-float-offset: -60px;
+    --menu-card-spacer-top: 160px;
+  }
+}
+
+/* ════════════════════════════════
+   RESET & GLOBAL
+════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 100%; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-body);
+  background-color: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button, input, textarea { font: inherit; border: none; background: none; }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+
+.container {
+  width: 100%; max-width: 1200px; margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+/* Unified Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-body); font-weight: var(--weight-bold);
+  border-radius: var(--radius-pill); cursor: pointer; border: none;
+  transition: all var(--transition-smooth); text-decoration: none;
+  white-space: nowrap; min-width: 44px; min-height: 44px;
+}
+.btn--primary {
+  background: var(--color-primary); color: var(--color-text-white);
+  padding: 14px 30px; font-size: var(--text-md); box-shadow: var(--shadow-btn);
+}
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-btn-hover); transform: scale(1.04);
+}
+.btn--sm { padding: 10px 22px; font-size: var(--text-sm); }
+.btn--full { width: 100%; }
+
+@media (min-width: 768px) {
+  .container { padding-inline: var(--space-12); }
+}
+
+/* ════════════════════════════════
+   SECTION: NAVIGATION
+════════════════════════════════ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: transparent; transition: background var(--transition-smooth);
+}
+.nav--scrolled { background: var(--color-bg-dark); }
+.nav__container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav__logo {
+  font-family: var(--font-script); font-size: var(--text-lg);
+  color: var(--color-text-dark);
+}
+.nav--scrolled .nav__logo { color: var(--color-text-white); }
+.nav__links { display: none; gap: var(--space-6); }
+.nav__link {
+  font-size: var(--text-sm); font-weight: var(--weight-medium);
+  transition: color var(--transition-smooth); min-height: 44px; display: inline-flex; align-items: center;
+  position: relative;
+}
+.nav--scrolled .nav__link { color: var(--color-text-white); }
+.nav__link::after {
+  content: ""; position: absolute; bottom: 6px; left: 0; width: 0; height: 2px;
+  background: var(--color-primary); transition: width var(--transition-smooth);
+}
+.nav__link:hover::after { width: 100%; }
+.nav__link:hover { color: var(--color-primary); }
+.nav__actions { display: flex; align-items: center; gap: var(--space-3); }
+.nav__cta { display: none; }
+.nav__hamburger {
+  display: flex; flex-direction: column; justify-content: center; gap: 5px;
+  width: 44px; height: 44px; cursor: pointer;
+}
+.nav__hamburger-bar {
+  display: block; width: 26px; height: 2px; background: var(--color-text-dark);
+  border-radius: var(--radius-pill); transition: background var(--transition-fast);
+}
+.nav--scrolled .nav__hamburger-bar { background: var(--color-text-white); }
+.nav__mobile {
+  position: fixed; inset: 0; background: var(--color-bg-dark); z-index: 200;
+  display: flex; flex-direction: column; padding: var(--space-6) var(--space-5);
+  transform: translateX(100%); visibility: hidden;
+}
+.nav__mobile-close {
+  align-self: flex-end; font-size: var(--text-2xl); color: var(--color-text-white);
+  width: 44px; height: 44px; cursor: pointer; display: flex; justify-content: center; align-items: center;
+}
+.nav__mobile-list { display: flex; flex-direction: column; align-items: center; gap: var(--space-8); margin-top: var(--space-20); }
+.nav__mobile-link { font-family: var(--font-heading); font-size: var(--text-2xl); color: var(--color-text-white); }
+.nav__mobile-cta-wrapper { margin-top: auto; width: 100%; display: flex; }
+
+@media (min-width: 768px) {
+  .nav__container { height: 80px; }
+  .nav__links { display: flex; }
+  .nav__cta { display: inline-flex; }
+  .nav__hamburger { display: none; }
+  .nav__mobile { display: none !important; }
+}
+
+/* ════════════════════════════════
+   SECTION: HERO
+════════════════════════════════ */
+.hero-section {
+  position: relative; min-height: 100svh; display: flex; align-items: center;
+  background: var(--color-bg-cream);
+}
+.hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero__bg-img {
+  width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-img-position);
+}
+.hero__container {
+  position: relative; z-index: 1; display: flex; flex-direction: column;
+  padding: 100px 0 var(--space-5); width: 100%; text-align: center; align-items: center;
+}
+.hero__content { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.hero__welcome { font-family: var(--font-script); font-size: var(--text-xl); color: var(--color-text-body); }
+.hero__heading {
+  font-family: var(--font-heading); font-size: var(--text-hero);
+  color: var(--color-text-dark); font-weight: var(--weight-bold); line-height: var(--leading-tight);
+}
+.hero__tagline { font-size: var(--text-md); color: var(--color-text-mid); font-style: italic; margin-top: var(--space-2); }
+.hero__cta-wrapper { width: 100%; margin-top: var(--space-6); display: flex; }
+.hero__proof {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-4); margin-top: var(--space-8);
+}
+.hero__proof-avatars { display: flex; align-items: center; margin-bottom: var(--space-2); }
+.hero__proof-avatar {
+  width: 40px; height: 40px; border-radius: var(--radius-circle); border: 2px solid var(--color-text-white);
+  object-fit: cover; margin-left: -12px; position: relative;
+}
+.hero__proof-avatar:first-child { margin-left: 0; }
+.hero__proof-heading { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); }
+.hero__proof-text { font-size: var(--text-xs); color: var(--color-text-mid); }
+
+@media (min-width: 768px) {
+  .hero__container { flex-direction: row; text-align: left; padding: 80px var(--space-12) var(--space-12); align-items: center; }
+  .hero__content { flex: 0 0 50%; align-items: flex-start; }
+  .hero__cta-wrapper { width: auto; }
+  .hero__proof { flex-direction: row; align-items: center; gap: var(--space-4); }
+  .hero__proof-avatars { margin-bottom: 0; }
+}
+
+/* ════════════════════════════════
+   SECTION: FEATURE STRIP
+════════════════════════════════ */
+.features-section { background: var(--color-bg-dark); padding-block: var(--space-5); }
+.features__grid { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
+.feature-card {
+  display: flex; align-items: center; gap: var(--space-3); width: 100%;
+  background: var(--color-bg-pill); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg); padding: 16px 24px; transition: var(--transition-smooth);
+}
+.feature-card:hover { background: var(--color-primary); border-color: transparent; }
+.feature-card__icon {
+  width: 36px; height: 36px; border-radius: var(--radius-circle); background: var(--color-primary);
+  display: flex; align-items: center; justify-content: center; color: var(--color-text-white);
+  flex-shrink: 0; transition: var(--transition-smooth);
+}
+.feature-card:hover .feature-card__icon { background: var(--color-text-white); color: var(--color-primary); }
+.feature-card__title { font-family: var(--font-heading); font-size: var(--text-md); font-weight: var(--weight-bold); color: var(--color-text-white); }
+.feature-card__desc { font-size: var(--text-xs); color: rgba(255,255,255,0.65); margin-top: var(--space-1); transition: color var(--transition-smooth); }
+.feature-card:hover .feature-card__desc { color: var(--color-text-white); }
+
+@media (min-width: 768px) {
+  .features-section { padding-block: var(--space-8); }
+  .features__grid { flex-direction: row; gap: var(--space-4); }
+  .feature-card { border-radius: var(--radius-pill); flex: 1; width: auto; }
+}
+
+
+/* ════════════════════════════════
+   SECTION: ABOUT THE VIBE
+════════════════════════════════ */
+.about-section { background: var(--color-bg-base); padding-block: var(--space-12); }
+.about__container { display: flex; flex-direction: column; gap: var(--space-8); }
+.about__left { display: flex; flex-direction: column; width: 100%; }
+.about__heading { font-family: var(--font-heading); font-size: var(--text-section); color: var(--color-text-dark); font-weight: var(--weight-bold); line-height: var(--leading-tight); margin-bottom: var(--space-2); }
+.about__subtitle { font-family: var(--font-body); font-size: var(--text-md); color: var(--color-primary); font-style: italic; margin-bottom: var(--space-6); }
+.about__body { font-size: var(--text-md); line-height: var(--leading-loose); max-width: 100%; color: var(--color-text-body); }
+.about__collage { position: relative; width: var(--about-collage-1-width); height: var(--about-collage-1-height); margin-top: var(--space-8); align-self: flex-start; }
+.about__collage-img--1 { width: 100%; height: 100%; border-radius: var(--radius-lg); object-fit: cover; box-shadow: var(--shadow-card); position: absolute; bottom: 0; left: 0; }
+.about__collage-img--2 { width: var(--about-collage-2-width); height: var(--about-collage-2-height); border-radius: var(--radius-md); object-fit: cover; position: absolute; top: var(--about-collage-2-top); right: var(--about-collage-2-right); border: 3px solid var(--color-bg-base); box-shadow: var(--shadow-card); }
+.about__right { display: flex; width: 100%; }
+.about__barista-img { width: 100%; height: var(--about-barista-img-height); object-fit: cover; object-position: var(--about-barista-img-position); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); }
+
+@media (min-width: 768px) {
+  .about-section { padding-block: var(--space-16); }
+  .about__container { flex-direction: row; gap: var(--space-12); align-items: flex-start; }
+  .about__left { flex: 0 0 55%; }
+  .about__body { max-width: 440px; }
+  .about__right { flex: 0 0 45%; }
+}
+
+/* ════════════════════════════════
+   SECTION: MENU
+════════════════════════════════ */
+.menu-section { background: var(--color-bg-base); padding-block: var(--space-12); position: relative; }
+.menu__header { text-align: center; margin-bottom: var(--space-10); }
+.menu__heading { font-family: var(--font-heading); font-size: var(--text-section); font-weight: var(--weight-bold); color: var(--color-text-dark); margin-bottom: var(--space-2); }
+.menu__subheading { font-family: var(--font-body); font-size: var(--text-md); color: var(--color-primary); font-style: italic; }
+.menu__container { padding-top: 80px; }
+.menu__grid { display: flex; flex-direction: column; gap: var(--space-10); width: 100%; overflow: visible; }
+.menu-card {
+  position: relative; background: var(--color-bg-card); border-radius: var(--menu-card-arch-radius);
+  box-shadow: var(--shadow-card); padding: var(--menu-card-spacer-top) var(--space-6) var(--space-8);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.menu-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-card-hover); }
+.menu-card--featured { border: 2px solid var(--color-primary); }
+.menu-card__img {
+  position: absolute; top: var(--menu-card-float-offset); left: 50%; transform: translateX(-50%);
+  width: var(--menu-card-img-size); height: var(--menu-card-img-size); border-radius: var(--radius-circle);
+  object-fit: cover; object-position: var(--menu-card-img-position);
+  border: 4px solid var(--color-bg-base); box-shadow: var(--shadow-sm); z-index: 5;
+  transition: transform var(--transition-smooth);
+}
+.menu-card:hover .menu-card__img { transform: translateX(-50%) rotate(3deg); }
+.menu-card__content { text-align: center; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+.menu-card__name { font-family: var(--font-heading); font-size: var(--text-xl); color: var(--color-text-dark); font-weight: var(--weight-bold); }
+.menu-card__desc { font-size: var(--text-sm); line-height: var(--leading-loose); margin-top: var(--space-3); max-width: 240px; }
+.menu-card__price { font-family: var(--font-heading); font-size: var(--text-lg); color: var(--color-primary); font-weight: var(--weight-bold); margin-top: var(--space-4); }
+
+@media (min-width: 768px) {
+  .menu-section { padding-block: var(--space-16); }
+  .menu__grid { flex-direction: row; align-items: flex-end; justify-content: center; gap: var(--space-6); }
+  .menu-card { flex: 1; max-width: 320px; }
+}
+
+/* ════════════════════════════════
+   SECTION: COMMUNITY EVENTS
+════════════════════════════════ */
+.community-section { background: var(--color-bg-base); padding-block: var(--space-12); }
+.community__header { margin-bottom: var(--space-8); text-align: left; }
+.community__heading { font-family: var(--font-heading); font-size: var(--text-section); font-weight: var(--weight-bold); color: var(--color-text-dark); margin-bottom: var(--space-2); }
+.community__subtitle { font-style: italic; color: var(--color-primary); font-size: var(--text-md); }
+.community__grid { display: flex; flex-direction: column; gap: var(--space-5); }
+.event-card {
+  background: var(--color-text-white); border-radius: var(--radius-xl); box-shadow: var(--shadow-card);
+  overflow: hidden; border: 1px solid var(--color-border); transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+.event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+.event-card__img-area { position: relative; width: 100%; height: var(--event-img-height); overflow: hidden; }
+.event-card__img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-smooth); }
+.event-card:hover .event-card__img { transform: scale(1.04); }
+.event-card__pills { position: absolute; top: var(--space-3); left: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.event-card__pill {
+  background: #111; color: var(--color-text-white); font-size: var(--text-xs);
+  padding: 4px 10px; border-radius: var(--radius-pill); font-weight: var(--weight-medium);
+  display: flex; align-items: center; gap: 4px;
+}
+.event-card__pill--urgent { background: var(--color-urgent); }
+.event-card__pill-icon { display: flex; align-items: center; justify-content: center; }
+.event-card__pill-icon svg { width: 12px; height: 12px; }
+.event-card__body { padding: var(--space-5); }
+.event-card__name { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--weight-bold); margin-bottom: var(--space-2); color: var(--color-text-dark); }
+.event-card__members-row { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+.event-card__avatars { display: flex; align-items: center; }
+.event-card__avatar { width: 32px; height: 32px; border-radius: var(--radius-circle); border: 2px solid var(--color-text-white); object-fit: cover; margin-left: -6px; }
+.event-card__avatar:first-child { margin-left: 0; }
+.event-card__members-text { font-size: var(--text-xs); color: var(--color-text-mid); }
+
+@media (min-width: 768px) {
+  .community__grid { flex-direction: row; }
+  .event-card { flex: 1; }
+}
+
+/* ════════════════════════════════
+   SECTION: MEMBERS
+════════════════════════════════ */
+.members-section { background: var(--color-bg-base); padding-bottom: var(--space-16); }
+.members__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+.member-card {
+  display: flex; align-items: center; gap: var(--space-3); background: var(--color-text-white);
+  border-radius: var(--radius-lg); padding: var(--space-4); box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border); transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border var(--transition-smooth);
+}
+.member-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); border-left: 4px solid var(--color-primary); }
+.member-card__avatar { width: var(--member-img-size); height: var(--member-img-size); border-radius: var(--radius-circle); border: 2px solid var(--color-bg-cream); object-fit: cover; flex-shrink: 0; }
+.member-card__info { display: flex; flex-direction: column; }
+.member-card__name { font-family: var(--font-heading); font-size: var(--text-md); font-weight: var(--weight-bold); color: var(--color-text-dark); }
+.member-card__role { font-size: var(--text-xs); color: var(--color-text-mid); line-height: var(--leading-tight); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+@media (min-width: 768px) {
+  .members__grid { display: flex; flex-direction: row; }
+  .member-card { flex: 1; }
+}
+
+/* ════════════════════════════════
+   SECTION: NEWSLETTER
+════════════════════════════════ */
+.newsletter-section {
+  position: relative; background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1400');
+  background-size: cover; background-position: center center;
+  padding: var(--space-12) 0; display: flex; justify-content: center; z-index: 1; text-align: center;
+}
+.newsletter-section::before { content: ""; position: absolute; inset: 0; background: var(--color-newsletter-bg); z-index: -1; }
+.newsletter__content { width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; }
+.newsletter__heading { font-family: var(--font-heading); font-size: var(--text-2xl); color: var(--color-text-white); font-weight: var(--weight-bold); margin-bottom: var(--space-2); }
+.newsletter__subtext { font-size: var(--text-md); color: rgba(255,255,255,0.75); margin-bottom: var(--space-8); }
+.newsletter__form { display: flex; flex-direction: column; width: 100%; gap: var(--space-3); }
+.newsletter__input { background: var(--color-text-white); padding: 14px 20px; border-radius: var(--radius-pill); font-size: 16px; width: 100%; outline: none; }
+.newsletter__input:focus { box-shadow: 0 0 0 3px var(--color-primary-glow); }
+.newsletter__submit-btn {
+  background: var(--color-primary); color: var(--color-text-white); padding: 14px 28px;
+  border-radius: var(--radius-pill); font-weight: var(--weight-bold); width: 100%;
+  cursor: pointer; transition: var(--transition-smooth);
+}
+.newsletter__submit-btn:hover { background: var(--color-primary-hover); }
+.newsletter__script-text { font-family: var(--font-script); font-size: var(--text-lg); color: rgba(255,255,255,0.85); font-style: italic; margin-top: var(--space-6); }
+
+@media (min-width: 768px) {
+  .newsletter-section { padding: var(--space-20) 0; }
+  .newsletter__heading { font-size: var(--text-3xl); }
+  .newsletter__form { flex-direction: row; gap: 0; width: auto; }
+  .newsletter__input { width: 340px; border-radius: var(--radius-pill) 0 0 var(--radius-pill); }
+  .newsletter__submit-btn { width: auto; border-radius: 0 var(--radius-pill) var(--radius-pill) 0; }
+}
+
+/* ════════════════════════════════
+   SECTION: FOOTER
+════════════════════════════════ */
+.footer { background: var(--color-bg-dark); border-top: 2px solid var(--color-primary); padding-top: var(--space-12); padding-bottom: var(--space-8); text-align: center; }
+.footer__container { display: flex; flex-direction: column; gap: var(--space-10); }
+.footer__col-heading { font-family: var(--font-heading); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: var(--space-4); }
+.footer__logo-script { font-family: var(--font-script); font-size: var(--text-xl); color: var(--color-primary); }
+.footer__tagline { font-size: var(--text-sm); color: rgba(255,255,255,0.6); margin-top: var(--space-2); }
+.footer__socials { display: flex; gap: var(--space-4); margin-top: var(--space-6); justify-content: center; }
+.footer__socials a { color: rgba(255,255,255,0.6); transition: var(--transition-smooth); min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.footer__socials a:hover { color: var(--color-primary); transform: translateY(-2px); }
+.footer__links { display: flex; flex-direction: column; gap: var(--space-3); align-items: center; }
+.footer__links a { font-size: var(--text-sm); color: rgba(255,255,255,0.7); transition: color var(--transition-smooth); min-height: 44px; display: inline-flex; align-items: center; }
+.footer__links a:hover { color: var(--color-primary); }
+.footer__text { font-size: var(--text-sm); color: rgba(255,255,255,0.65); line-height: var(--leading-loose); }
+.footer__text p { margin-bottom: 4px; }
+.footer__mini-form { display: flex; justify-content: center; margin-top: var(--space-4); }
+.footer__mini-input { padding: 10px 16px; border-radius: var(--radius-pill) 0 0 var(--radius-pill); background: var(--color-text-white); font-size: 16px; width: 100%; max-width: 200px; outline: none; }
+.footer__mini-btn { background: var(--color-primary); color: white; width: 44px; border-radius: 0 var(--radius-pill) var(--radius-pill) 0; cursor: pointer; transition: background var(--transition-fast); }
+.footer__mini-btn:hover { background: var(--color-primary-hover); }
+.footer__bottom { border-top: 1px solid rgba(255,255,255,0.08); margin-top: var(--space-8); padding-top: var(--space-5); }
+.footer__bottom-container { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+.footer__copyright, .footer__credits { font-size: var(--text-xs); color: rgba(255,255,255,0.4); }
+
+@media (min-width: 768px) {
+  .footer { text-align: left; padding-top: var(--space-16); }
+  .footer__container { flex-direction: row; display: grid; grid-template-columns: 3fr 2fr 2fr 3fr; gap: var(--space-8); }
+  .footer__socials { justify-content: flex-start; }
+  .footer__links { align-items: flex-start; }
+  .footer__mini-form { justify-content: flex-start; }
+  .footer__bottom-container { flex-direction: row; justify-content: space-between; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.ripple-element {
+  position: absolute; border-radius: 50%; background: #ffffff;
+  animation: ripple 0.5s linear; pointer-events: none;
+}
+/* Focus States for Accessibility */
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+</style>
+</head>
+
+<body>
+  <!-- ════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════ -->
+  <header>
+    <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+      <div class="container nav__container">
+        <a href="#hero" class="nav__logo" aria-label="GrindHouse Cafe home">GrindHouse Cafe</a>
+        
+        <ul class="nav__links" role="list">
+          <li><a href="#hero" class="nav__link">Home</a></li>
+          <li><a href="#booking" class="nav__link">Booking</a></li>
+          <li><a href="#menu" class="nav__link">Menu</a></li>
+          <li><a href="#community" class="nav__link">About/Community</a></li>
+        </ul>
+
+        <div class="nav__actions">
+          <a href="#newsletter" class="btn btn--primary nav__cta">Sign Up</a>
+          <button class="nav__hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-mobile-menu">
+            <span class="nav__hamburger-bar" aria-hidden="true"></span>
+            <span class="nav__hamburger-bar" aria-hidden="true"></span>
+            <span class="nav__hamburger-bar" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Overlay -->
+      <div class="nav__mobile" id="nav-mobile-menu" aria-hidden="true" role="dialog" aria-modal="true">
+        <button class="nav__mobile-close" aria-label="Close navigation">✕</button>
+        <ul class="nav__mobile-list" role="list">
+          <li><a href="#hero" class="nav__mobile-link">Home</a></li>
+          <li><a href="#booking" class="nav__mobile-link">Booking</a></li>
+          <li><a href="#menu" class="nav__mobile-link">Menu</a></li>
+          <li><a href="#community" class="nav__mobile-link">About/Community</a></li>
+          <li class="nav__mobile-cta-wrapper"><a href="#newsletter" class="btn btn--primary btn--full">Sign Up</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ════════════════════════════════
+         SECTION: HERO
+    ════════════════════════════════ -->
+    <section id="hero" class="hero-section">
+      <div class="hero__bg" aria-hidden="true">
+        <img class="hero__bg-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600" alt="Cafe background" loading="eager" fetchpriority="high">
+      </div>
+      <div class="container hero__container">
+        <div class="hero__content">
+          <p class="hero__welcome">Welcome to</p>
+          <h1 class="hero__heading">The Grind<br>Collective</h1>
+          <p class="hero__tagline">Brewed for the Bold.</p>
+          
+          <div class="hero__cta-wrapper">
+            <a href="#booking" class="btn btn--primary" id="hero-book-btn">Book Your Spot 📖</a>
+          </div>
+          
+          <div class="hero__proof">
+            <div class="hero__proof-avatars" aria-hidden="true"></div>
+            <div class="hero__proof-text-wrapper">
+              <p class="hero__proof-heading">Over <span id="hero-counter">0</span>+</p>
+              <p class="hero__proof-text">Returning customers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         SECTION: FEATURE STRIP
+    ════════════════════════════════ -->
+    <section id="features" class="features-section" aria-label="Key features">
+      <div class="container features__container">
+        <div class="features__grid" id="feature-grid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         SECTION: ABOUT THE VIBE
+    ════════════════════════════════ -->
+    <section id="about" class="about-section">
+      <div class="container about__container">
+        <div class="about__left">
+          <h2 class="about__heading">About the Vibe</h2>
+          <p class="about__subtitle">Cozy Chaos, Curated for Creatives</p>
+          <p class="about__body">
+            The Grind Collective isn't your regular café. It's a refuge for raw ideas,
+            where steam curls like thoughts and keyboards clack in rhythm with ambition.
+            The lighting is moody, the walls whisper with stories, and the tables are shared
+            by thinkers, writers, coders, and wanderers. Here, imperfection is art — and every
+            brew comes with a side of boldness.
+          </p>
+          <div class="about__collage" aria-hidden="true">
+            <img class="about__collage-img--1" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300" alt="Cafe lighting" loading="lazy">
+          </div>
+        </div>
+        <div class="about__right">
+          <img class="about__barista-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500" alt="Barista crafting the perfect cup" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         SECTION: MENU
+    ════════════════════════════════ -->
+    <section id="menu" class="menu-section">
+      <div class="container menu__container">
+        <div class="menu__header">
+          <h2 class="menu__heading">What Fuels the Bold</h2>
+          <p class="menu__subheading">Not Just Drinks — These Are Liquid Chapters</p>
+        </div>
+        <div class="menu__grid" id="menu-grid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         SECTION: COMMUNITY
+    ════════════════════════════════ -->
+    <section id="community" class="community-section">
+      <div class="container community__container">
+        <div class="community__header">
+          <h2 class="community__heading">The Community</h2>
+          <p class="community__subtitle">Meet the Grind Collective Circle</p>
+        </div>
+        <div class="community__grid" id="community-grid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         SECTION: MEMBERS
+    ════════════════════════════════ -->
+    <section id="members" class="members-section" aria-label="Community members">
+      <div class="container members__container">
+        <div class="members__grid" id="members-grid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+         SECTION: NEWSLETTER
+    ════════════════════════════════ -->
+    <section id="newsletter" class="newsletter-section">
+      <div class="container newsletter__container">
+        <div class="newsletter__content">
+          <h2 class="newsletter__heading">Signup for our Newsletter</h2>
+          <p class="newsletter__subtext">Be the first to know about events, collabs, and creative sparks.</p>
+          <form class="newsletter__form" id="newsletter-form" novalidate aria-label="Newsletter signup">
+            <label for="newsletter-email" class="sr-only" aria-hidden="true" style="display:none;">Email Address</label>
+            <input type="email" id="newsletter-email" name="email" class="newsletter__input" placeholder="Enter your email here" required aria-required="true" autocomplete="email">
+            <button type="submit" class="btn btn--primary newsletter__submit-btn">Stay in the Loop</button>
+          </form>
+          <p class="newsletter__script-text">stay plugged in, no spam, just soul.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ════════════════════════════════
+       SECTION: FOOTER
+  ════════════════════════════════ -->
+  <footer id="footer" class="footer" role="contentinfo">
+    <div class="container footer__container">
+      
+      <div class="footer__col footer__col--brand">
+        <p class="footer__logo-script">The Grind Collective</p>
+        <p class="footer__tagline">Brewed for the Bold.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+             <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21 8.3c-1.6 0-3-.6-4.2-1.6v9c0 4.1-3.3 7.4-7.4 7.4A7.4 7.4 0 014 17.6a7.4 7.4 0 019.5-7.2V14a3.8 3.8 0 00-4 1.5 3.8 3.8 0 002.8 5.8 4 4 0 004-4V2h3.5a7.3 7.3 0 004.9 3.5v2.8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__col footer__col--explore">
+        <h3 class="footer__col-heading">EXPLORE</h3>
+        <ul class="footer__links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#booking">Booking</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__col--visit">
+        <h3 class="footer__col-heading">VISIT US</h3>
+        <address class="footer__text" style="font-style: normal;">
+          <p>📍 84 Roast Lane, Brooklyn NY 11201</p>
+          <p>⏰ Mon–Fri: 7am – 10pm</p>
+          <p>⏰ Sat–Sun: 8am – 11pm</p>
+          <p>📞 +1 718 555 0199</p>
+        </address>
+      </div>
+
+      <div class="footer__col footer__col--newsletter">
+        <h3 class="footer__col-heading">STAY CONNECTED</h3>
+        <p class="footer__text">Quick updates, event alerts, no noise.</p>
+        <form class="footer__mini-form">
+          <label for="footer-email" class="sr-only" aria-hidden="true" style="display:none;">Subscribe Email</label>
+          <input type="email" id="footer-email" placeholder="Your email" class="footer__mini-input" required aria-label="Mini email input">
+          <button type="submit" class="footer__mini-btn" aria-label="Subscribe">→</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottom-container">
+        <p class="footer__copyright">© 2025 The Grind Collective. All rights reserved.</p>
+        <p class="footer__credits">Crafted with ☕ in Brooklyn</p>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script defer>
+/* ════════════════════════════════════════════════
+   THE GRIND COLLECTIVE — JS LOGIC
+════════════════════════════════════════════════ */
+
+const menuData = [
+  { name: 'The Espresso Manifesto', description: 'A double shot of courage for your blank-page moments. Dense. Pure. Unapologetic.', price: '$4.50', image: 'https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=400', badge: '', badgeType: '' },
+  { name: 'Velvet Chaos Latte', description: 'Creamy espresso layered with spiced oat milk, cinnamon dust, and a hint of rebellion.', price: '$6.50', image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400', badge: 'Featured', badgeType: 'featured' },
+  { name: 'The Still Water Pour', description: 'Ethiopian single origin, cold dripped for 12 hours. Quiet confidence in every sip.', price: '$7.00', image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400', badge: '', badgeType: '' }
+];
+
+const eventData = [
+  { name: 'Morning Flow Sessions', pills: [{ icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>', text: 'Daily, 9:00am' }, { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>', text: '30+ Reservations' }], image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=400', memberCount: 'Over 30+ Members', avatars: ['https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80', 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=80', 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=80'], urgent: false },
+  { name: 'Silent Writing Evenings', pills: [{ icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>', text: 'Tuesdays, 5pm' }, { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>', text: 'Filling Fast' }], image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400', memberCount: 'Over 59+ Members', avatars: ['https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80', 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80'], urgent: true },
+  { name: 'Startup Pitch Mornings', pills: [{ icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>', text: 'Daily, 9:00am' }, { icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>', text: '22+ Reservations' }], image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400', memberCount: 'Over 30+ Members', avatars: ['https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=80', 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=80', 'https://images.unsplash.com/photo-1520626353912-ee989ab0dcbb?w=80'], urgent: false }
+];
+
+const memberData = [
+  { name: 'Chris Williams', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100', bio: 'Poet. Sits by the window. Published his first chapbook here.' },
+  { name: 'Tega Janice', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100', bio: 'Front-end dev, started a startup from the long table.' },
+  { name: 'Tony Brown', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100', bio: 'Illustrator, always sketching in corner booth.' },
+  { name: 'Lucy Row', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100', bio: 'Designer, building immersive web experiences.' }
+];
+
+function initNav() {
+  const nav = document.getElementById('main-nav');
+  const btn = document.querySelector('.nav__hamburger');
+  const overlay = document.getElementById('nav-mobile-menu');
+  const close = document.querySelector('.nav__mobile-close');
+  let open = false;
+
+  window.addEventListener('scroll', () => nav.classList.toggle('nav--scrolled', window.scrollY > 50), { passive: true });
+
+  const toggle = (state) => {
+    open = state;
+    btn.setAttribute('aria-expanded', open);
+    overlay.setAttribute('aria-hidden', !open);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && typeof gsap !== 'undefined') {
+      if (open) gsap.fromTo(overlay, { x: '100%', autoAlpha: 0 }, { x: '0%', autoAlpha:1, duration: 0.4, ease: 'power3.out' });
+      else gsap.to(overlay, { x: '100%', autoAlpha:0, duration: 0.3, ease: 'power2.in' });
+    } else {
+      overlay.style.visibility = open ? 'visible' : 'hidden';
+      overlay.style.transform = open ? 'translateX(0)' : 'translateX(100%)';
+    }
+  };
+
+  btn.addEventListener('click', () => toggle(true));
+  close.addEventListener('click', () => toggle(false));
+  document.querySelectorAll('.nav__mobile-link').forEach(l => l.addEventListener('click', () => toggle(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) toggle(false); });
+}
+
+function initMenuCards() {
+  const grid = document.getElementById('menu-grid');
+  if (!grid) return;
+  menuData.forEach(item => {
+    const isFeatured = item.badgeType === 'featured';
+    const card = document.createElement('article');
+    card.className = `menu-card ${isFeatured ? 'menu-card--featured' : ''}`;
+    card.innerHTML = `
+      <img class="menu-card__img" src="${item.image}" alt="${item.name}" loading="lazy">
+      <div class="menu-card__content">
+        <h3 class="menu-card__name">${item.name}</h3>
+        <p class="menu-card__desc">${item.description}</p>
+        <p class="menu-card__price">${item.price}</p>
+        <button class="btn btn--primary" style="margin-top: 24px;">Order This</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function initEventCards() {
+  const grid = document.getElementById('community-grid');
+  if (!grid) return;
+  eventData.forEach(event => {
+    const pillsHTML = event.pills.map(p => `<div class="event-card__pill ${event.urgent && p.text === 'Filling Fast' ? 'event-card__pill--urgent' : ''}"><span class="event-card__pill-icon">${p.icon}</span>${p.text}</div>`).join('');
+    const avatarsHTML = event.avatars.map(src => `<img class="event-card__avatar" src="${src}" alt="" loading="lazy">`).join('');
+    const card = document.createElement('article');
+    card.className = 'event-card';
+    card.innerHTML = `
+      <div class="event-card__img-area">
+        <img class="event-card__img" src="${event.image}" alt="${event.name}" loading="lazy">
+        <div class="event-card__pills">${pillsHTML}</div>
+      </div>
+      <div class="event-card__body">
+        <h3 class="event-card__name">${event.name}</h3>
+        <div class="event-card__members-row">
+          <div class="event-card__avatars">${avatarsHTML}</div>
+          <p class="event-card__members-text">${event.memberCount}</p>
+        </div>
+        <button class="btn btn--primary cta-ripple">Join the Circle</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function initMemberCards() {
+  const grid = document.getElementById('members-grid');
+  const avatars = document.querySelector('.hero__proof-avatars');
+  if (grid) {
+    memberData.forEach(m => {
+      const card = document.createElement('article');
+      card.className = 'member-card';
+      card.innerHTML = `<img class="member-card__avatar" src="${m.avatar}" alt="${m.name}" loading="lazy"><div class="member-card__info"><p class="member-card__name">${m.name}</p><p class="member-card__role">${m.bio}</p></div>`;
+      grid.appendChild(card);
+    });
+  }
+  if (avatars) {
+    eventData[0].avatars.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src; img.className = 'hero__proof-avatar'; img.alt = '';
+      avatars.appendChild(img);
+    });
+  }
+}
+
+function initForms() {
+  const form = document.getElementById('newsletter-form');
+  const input = document.getElementById('newsletter-email');
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!input.value || !input.value.includes('@')) {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && typeof gsap !== 'undefined') {
+          gsap.to(form, { x: [-10,10,-8,8,-5,5,0], duration: 0.5, ease: 'power2.inOut' });
+        }
+        input.style.border = '2px solid var(--color-urgent)';
+      } else {
+        form.innerHTML = `<div style="color:white; font-family:var(--font-heading); font-size:var(--text-lg);">✅ You're in! Welcome to the Collective.</div>`;
+      }
+    });
+  }
+}
+
+function initMobileBar() {
+  const bar = document.createElement('div');
+  bar.id = 'mobile-sticky-bar';
+  bar.innerHTML = `<a href="#booking" class="btn btn--primary" style="width: 100%;">Book Your Table Now</a>`;
+  Object.assign(bar.style, { position: 'fixed', bottom: '0', left: '0', right: '0', padding: '16px', background: 'var(--color-bg-dark)', zIndex: '99', display: 'none', boxShadow: '0 -4px 20px rgba(0,0,0,0.1)' });
+  document.body.appendChild(bar);
+
+  const checkBar = () => {
+    if (window.innerWidth < 768 && window.scrollY > 300) {
+      if (bar.style.display !== 'block') {
+         bar.style.display = 'block';
+         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && typeof gsap !== 'undefined') {
+            gsap.fromTo(bar, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" });
+         }
+      }
+    } else {
+      bar.style.display = 'none';
+    }
+  };
+  window.addEventListener('scroll', checkBar, {passive: true});
+  checkBar();
+}
+
+function initCounters() {}
+
+function initAnimations() {
+  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (noMotion || typeof gsap === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Load Sequence
+  const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  heroTl.fromTo('.nav', { autoAlpha: 0, y: -20 }, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0)
+        .fromTo('.hero__welcome', { autoAlpha: 0, x: -20 }, { autoAlpha: 1, x: 0, duration: 0.5 }, 0.3)
+        .fromTo('.hero__heading', { autoAlpha: 0, y: 25 }, { autoAlpha: 1, y: 0, duration: 0.7 }, 0.5)
+        .fromTo('.hero__tagline', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4 }, 0.7)
+        .fromTo('.hero-section .hero__cta-wrapper .btn', { scale: 0.9, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.4 }, 0.85)
+        .fromTo('.hero__proof', { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, duration: 0.4 }, 1.0);
+
+  // Counter
+  const counter = document.getElementById('hero-counter');
+  if (counter) {
+    gsap.to(counter, {
+      innerText: 100, duration: 1.5, ease: "power2.out", delay: 1.2,
+      snap: { innerText: 1 }
+    });
+  }
+
+  // ScrollTriggers
+  ScrollTrigger.defaults({ start: "top 85%", toggleActions: "play none none none", once: true });
+  
+  if (document.querySelectorAll('.feature-card').length) {
+    gsap.fromTo('.feature-card', { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, stagger: 0.1, scrollTrigger: '.features-section' });
+  }
+  if (document.querySelector('.about-section')) {
+    gsap.fromTo('.about__left > :not(.about__collage)', { autoAlpha: 0, x: -35 }, { autoAlpha: 1, x: 0, duration: 0.7, scrollTrigger: '.about-section' });
+    gsap.fromTo('.about__collage img', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, stagger: 0.12, delay: 0.2, scrollTrigger: '.about-section' });
+    gsap.fromTo('.about__barista-img', { autoAlpha: 0, x: 35 }, { autoAlpha: 1, x: 0, duration: 0.7, delay: 0.1, scrollTrigger: '.about-section' });
+  }
+  if (document.querySelector('.menu-section')) {
+    gsap.fromTo('.menu__header', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, scrollTrigger: '.menu__header' });
+    gsap.fromTo('.menu-card', { autoAlpha: 0, y: 45 }, { autoAlpha: 1, y: 0, stagger: 0.15, duration: 0.7, scrollTrigger: '.menu__grid' });
+    const centerCard = document.querySelector('.menu-card--featured');
+    if (centerCard && window.innerWidth >= 768) {
+      gsap.fromTo(centerCard, { scale: 0.88 }, { scale: 1.04, duration: 0.7, ease: "power3.out", scrollTrigger: '.menu__grid' });
+    }
+  }
+  if (document.querySelector('.community-section')) {
+    gsap.fromTo('.community__header', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, scrollTrigger: '.community__header' });
+    gsap.fromTo('.event-card', { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, stagger: 0.12, scrollTrigger: '.community__grid' });
+  }
+  if (document.querySelector('.members-section')) {
+    gsap.fromTo('.member-card', { autoAlpha: 0, scale: 0.95 }, { autoAlpha: 1, scale: 1, stagger: 0.1, scrollTrigger: '.members__grid' });
+  }
+  if (document.querySelector('.newsletter-section')) {
+    gsap.fromTo('.newsletter__content', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, scrollTrigger: '.newsletter-section' });
+  }
+  if (document.querySelector('.footer')) {
+    gsap.fromTo('.footer__col', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, stagger: 0.1, scrollTrigger: '.footer' });
+  }
+
+  // Avatar Stack Pulse
+  if (document.querySelector('.hero__proof-avatars')) {
+    gsap.to('.hero__proof-avatars', { scale: 1.05, duration: 2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+  }
+
+  // Button Ripple Listener
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.cta-ripple');
+    if (btn) {
+      const circle = document.createElement('span');
+      circle.classList.add('ripple-element');
+      const d = Math.max(btn.clientWidth, btn.clientHeight);
+      circle.style.width = circle.style.height = d + 'px';
+      const rect = btn.getBoundingClientRect();
+      circle.style.left = e.clientX - rect.left - d/2 + 'px';
+      circle.style.top = e.clientY - rect.top - d/2 + 'px';
+      btn.style.position = 'relative'; 
+      btn.style.overflow = 'hidden';
+      btn.appendChild(circle);
+      setTimeout(() => circle.remove(), 500);
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('feature-grid').innerHTML = `
+    <div class="feature-card"><div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21h6M12 3a6 6 0 016 6c0 2.5-1.5 4.5-3 6H9c-1.5-1.5-3-3.5-3-6a6 6 0 016-6z"/><path d="M9 18h6" stroke-linecap="round"/></svg></div><div class="feature-card__body"><p class="feature-card__title">A Space to Think</p><p class="feature-card__desc">Not just Wi-Fi and coffee — we offer mental room to reset.</p></div></div>
+    <div class="feature-card"><div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 10h14l-1.5 8H6.5L5 10z"/><path d="M18 12h2a2 2 0 010 4h-2"/><path d="M9 6c0-1.5 2-1.5 2-3M13 6c0-1.5 2-1.5 2-3" stroke-linecap="round"/></svg></div><div class="feature-card__body"><p class="feature-card__title">We Serve Courage by the Cup.</p><p class="feature-card__desc">Fuel for the Mind. Not Just the Body.</p></div></div>
+    <div class="feature-card"><div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="3"/><path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="4" cy="9" r="2"/><path d="M2 19c0-2.2 1.8-4 4-4"/><circle cx="20" cy="9" r="2"/><path d="M22 19c0-2.2-1.8-4-4-4"/></svg></div><div class="feature-card__body"><p class="feature-card__title">It's a Creative Network</p><p class="feature-card__desc">Where strangers become collaborators.</p></div></div>`;
+  
+  initNav();
+  initMenuCards();
+  initEventCards();
+  initMemberCards();
+  initForms();
+  initMobileBar();
+  initCounters();
+  initAnimations();
+});
+  </script>
+</body>
+</html>
