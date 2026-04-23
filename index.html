@@ -333,7 +333,7 @@ button, input, textarea { font: inherit; border: none; background: none; }
    SECTION: MENU
 ════════════════════════════════ */
 .menu-section { background: var(--color-bg-base); padding-block: var(--space-12); position: relative; }
-.menu__header { text-align: center; margin-bottom: var(--space-10); }
+.menu__header { text-align: center; margin-bottom: var(--space-16); position: relative; z-index: 10; }
 .menu__heading { font-family: var(--font-heading); font-size: var(--text-section); font-weight: var(--weight-bold); color: var(--color-text-dark); margin-bottom: var(--space-2); }
 .menu__subheading { font-family: var(--font-body); font-size: var(--text-md); color: var(--color-primary); font-style: italic; }
 .menu__container { padding-top: 80px; }
@@ -362,6 +362,7 @@ button, input, textarea { font: inherit; border: none; background: none; }
 
 @media (min-width: 768px) {
   .menu-section { padding-block: var(--space-16); }
+  .menu__header { margin-bottom: var(--space-20); }
   .menu__grid { justify-content: center; gap: var(--space-6); }
   .menu-card { 
     max-width: 320px; border-radius: var(--menu-card-arch-radius); 
